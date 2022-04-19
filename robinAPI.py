@@ -8,6 +8,8 @@ from getpass import getpass
 import time
 #sometimes mass buying gives time out throttle errors. Try to add a time.sleep(2) per buy
 
+username = ""
+password = ""
 
 def main():
     print("\n\n\n\nWelcome to the robin hood portfolio app!\n")
@@ -127,13 +129,14 @@ def main():
         print("\nERROR: Invalid option, please try again.\n")
 
 def login():
-
+    global username , password
+    
     # manual login
     # username = input("Please enter RobinHood username: ")
     # password = getpass()
 
     # auto login
-    r.login("","")
+    r.login(username,password)
     print("Login successful\n")
     return r
 
