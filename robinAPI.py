@@ -105,7 +105,7 @@ def main():
 
 
 
-    elif option == "HOLYFUCK":
+    elif option == "omg":
         nuke(  my_stocks ,   r )
 
     elif option == "rebuy":
