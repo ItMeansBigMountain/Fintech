@@ -1,0 +1,6 @@
+Robin Hood Unofficial API usage
+
+    robinAPI.py - choose an option to run functions based on user portfolio.
+        api handles auth by login & MFA 
+
+    daytrade.py - sell stocks that made more than half a percent in total daily average.
