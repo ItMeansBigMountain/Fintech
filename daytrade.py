@@ -1,7 +1,11 @@
 import robin_stocks as r
 import pandas as pd
 import matplotlib.pyplot as plt
-r.login("","")
+
+# AUTH
+username = ""
+password = ""
+r.login(username,password)
 
 #retrieve stocks data
 my_stocks = r.build_holdings()
