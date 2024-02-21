@@ -413,10 +413,11 @@ def nuke( my_stocks , r):
             f.write('\n')
 
             print(key)
-            print(float(quantity) - .0005)
+            print(float(quantity))
             print()
 
-            sell = r.orders.order( key , quantity , "market", "immediate", "sell",  timeInForce='gfd')
+            # sell = r.orders.order( key , quantity , "market", "immediate", "sell",  timeInForce='gfd')
+            sell = r.order_sell_market(key, quantity=quantity, timeInForce='gfd')
             print(sell)
             print()
             time.sleep(2)
