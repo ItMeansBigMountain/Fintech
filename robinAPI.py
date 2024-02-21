@@ -1,4 +1,4 @@
-import robin_stocks as r
+import robin_stocks.robinhood as r
 import pandas as pd
 import matplotlib.pyplot as plt
 import pprint
@@ -6,15 +6,18 @@ import math
 import time
 from getpass import getpass
 import time
+import json
+import configparser
+
 #sometimes mass buying gives time out throttle errors. Try to add a time.sleep(2) per buy
 
-username = ""
-password = ""
+
+
 
 def main():
     print("\n\n\n\nWelcome to the robin hood portfolio app!\n")
     print("Please log into your RobinHood account")
-    #add username and password inputs later by calling a new function
+    # add username and password inputs later by calling a new function
 
     r = login()
 
@@ -131,9 +134,11 @@ def main():
 def login():
     global username , password
     
-    # manual login
-    # username = input("Please enter RobinHood username: ")
-    # password = getpass()
+    # CREDENTIALS
+    config = configparser.ConfigParser()
+    config.read("secrets.ini")
+    username = config["CREDENTIALS"]["username"]
+    password = config["CREDENTIALS"]["password"]
 
     # auto login
     r.login(username,password)
@@ -158,6 +163,12 @@ def sortEquity(my_stocks):
         payout.append(  (key,'{0:.2f}'.format(payout_price) ) )
 
     payout = Sort_Tuple(payout)
+    
+    with open("sort_equity.json", "a") as f:
+        json.dump(payout, f)
+
+    with open("my-stocks.json", "a") as f:
+        json.dump(my_stocks, f)
 
     pprint.pprint(payout)
 
@@ -174,6 +185,9 @@ def peRATIOsort(my_stocks):
 
     payout = Sort_Tuple(payout)
 
+    with open("peRATIOsort.json", "a") as f:
+        json.dump(payout, f)
+
     pprint.pprint(payout)
 
 def Dividend_Sort(my_stocks):
@@ -189,6 +203,9 @@ def Dividend_Sort(my_stocks):
 
 
     dividends = Sort_Tuple(dividends)
+
+    with open("div-sort.json", "a") as f:
+        json.dump(payout, f)
 
     pprint.pprint(dividends)
 
@@ -219,6 +236,9 @@ def cryptoView(r):
 
 
             print()
+    
+    with open("div-sort.json", "a") as f:
+        json.dump(dictionary, f)
 
 def getRatings(my_stocks, r):
 
